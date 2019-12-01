@@ -1,9 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, cleanup } from '@testing-library/react';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+import { Provider } from 'react-redux';
 import App from './App';
+import axiosMock from 'axios'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+afterEach(cleanup)
+
+function renderWithRedux(
+  component,
+  { initialState, store = createStore(rootReducer, initialState, applyMiddleware(thunk)) } = {}
+) {
+  return {
+    ...render(<Provider store={store}>{component}</Provider>),
+    store
+  }
+}
+
+test('has heading text of "Earthquakes"', async () => {
+  const { getByText } = renderWithRedux(<App />);
+  expect(getByText('Earthquakes')).toBeInTheDocument();
+});
+
+it('has "earthquakes-app" test id', () => {
+  const { getByTestId } = renderWithRedux(<App />);
+  expect(getByTestId('earthquakes-app')).toBeInTheDocument();
 });

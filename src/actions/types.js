@@ -1,0 +1,3 @@
+export const FETCH_DATA = 'FETCH_DATA';
+export const FILTER_MAG_TYPE = 'FILTER_MAG_TYPE';
+export const FILTER_MAGNITUDE = 'FILTER_MAGNITUDE';
