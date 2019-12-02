@@ -1,3 +1,17 @@
+#### Project details
+- A create-react-app using redux to load earthquake data
+- Can filter by magnitude
+- Can filter by magType
+- Unit tests written using react-testing-library/jest
+
+#### Improvements to be made
+- Reset filters
+- Robustness, error handling, exception/edge cases
+- Increase test coverage
+- Add E2E tests with Cypress
+- Develop with inclusivity and accessibility in mind
+- Styling
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
