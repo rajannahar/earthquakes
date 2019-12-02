@@ -12,7 +12,7 @@ const earthquakeReducer = (state = initialState, action) => {
       return {
         ...state,
         ...payload,
-        loading: payload && payload.length ? false : true
+        loading: payload && typeof payload !== undefined ? false : true
       }
     case FILTER_MAG_TYPE:
       return {
@@ -22,10 +22,6 @@ const earthquakeReducer = (state = initialState, action) => {
             return item.properties.magType.toLowerCase() === payload ? item : null;
           })
         }
-        // posts: [...state.posts, payload]
-        // state.data.features.filter(item => {
-        //   return item.properties.magType.toLowerCase() === payload ? item : null;
-        // }),
       }
     case FILTER_MAGNITUDE:
     return {
@@ -35,9 +31,6 @@ const earthquakeReducer = (state = initialState, action) => {
           return item.properties.mag ===  parseFloat(payload) ? item : null
         })
       }
-      // earthquakes: state.earthquakes.filter(item => {
-      //   return item.properties.mag ===  parseFloat(payload) ? item : null
-      // })
     }
     default:
       return state;
